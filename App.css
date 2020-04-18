@@ -1,0 +1,18 @@
+.App {
+  display: grid;
+  grid-template-areas: "sidebar header" "sidebar main";
+}
+
+
+.appHeader {
+  grid-area: header;
+  padding: 15px;
+  border: 1px black solid;
+
+}
+
+.navigation {
+  grid-area: sidebar;
+  height: 100vh;
+  border: 1px black solid;
+}

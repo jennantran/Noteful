@@ -1,0 +1,11 @@
+  
+.NoteList {
+    list-style-type: none;
+    margin: 130px 0 0;
+    padding: 0;
+    border: 1px black solid; 
+  }
+
+  font{
+      color:black;
+  }

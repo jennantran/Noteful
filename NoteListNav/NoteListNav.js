@@ -1,0 +1,30 @@
+import React from 'react';
+import { NavLink, Link } from 'react-router-dom'
+import './NoteListNav'
+
+
+export default function NoteListNav(props) {
+    return (
+        <div className="NoteListNav">
+            <ul className="NoteList">
+                {props.folders.map(folder =>
+                        <li key={folder.id}>
+                            <NavLink
+                                className="NavFoldersLink"
+                                to={`/folder/${folder.id}`}
+                                >
+                                {folder.name}
+                             </NavLink>
+                        </li>
+                )}
+            </ul>
+               
+
+
+        </div>
+    );
+}
+
+NoteListNav.defaultProps = {
+    folders: []
+  }
