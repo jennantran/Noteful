@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom'
-import './NoteListNav'
+import './NoteListNav.css'
 
 
 export default function NoteListNav(props) {
