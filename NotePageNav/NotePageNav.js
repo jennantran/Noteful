@@ -1,5 +1,5 @@
 import React from 'react';
-import {findNote, findFolder} from  '../NoteFunctions';
+
 
 export default class NotePageNav extends React.Component {
     static defaultProps={
