@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import DummyStore from '../dummyStore'
 import NoteListNav from '../NoteListNav/NoteListNav'
 import NotePageNav from '../NotePageNav/NotePageNav'
-import { findNote , findFolder, getNotesForFolder } from '../NoteFunctions.js'
 import NoteListMain from '../NoteListMain/NoteListMain';
-import NotePageMain from '../NotePageMain/NotePageMain';
 import noteContext from '../noteContext';
 
 
@@ -22,6 +19,7 @@ class App extends Component{
     const foldersEndPoint = '/folders';
 
     console.log(baseUrl + notesEndPoint);
+    console.log(baseUrl + foldersEndPoint);
 
     Promise.all([
         fetch(baseUrl + notesEndPoint),
@@ -60,11 +58,10 @@ class App extends Component{
                     component={NoteListNav}
                       />
               ))}
-               <Route path="/note/:noteId" component={NotePageNav} />
-                <Route path="/add-folder" component={NotePageNav} />
-                <Route path="/add-note" component={NotePageNav} />
-              />         
-            ))}
+               <Route 
+                    path="/note/:noteId" 
+                    component={NotePageNav} 
+                    />
         </>
     );
 }

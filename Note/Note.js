@@ -37,8 +37,8 @@ export default class Note extends React.Component {
         return(
             <div className="note">
                 <h2 className="noteTitle">
-                    <Link to={`/note/${this.props.id}`}>
-                        {this.props.name}
+                    <Link to={`/note/${id}`}>
+                        {name}
                     </Link>
                 </h2>
                 <button
