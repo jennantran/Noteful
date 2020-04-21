@@ -1,24 +1,34 @@
 import React from 'react'
 import Note from '../Note/Note'
+import NoteContext from '../noteContext'
+import { findNote } from '../NoteFunctions'
 
-export default function NotePageMain(props) {
-  return (
-    <section className='NotePageMain'>
-      <Note
-        id={props.note.id}
-        name={props.note.name}
-      />
-      <div className='NotePageMainContent'>
-        {props.note.content.split(/\n \r|\n/).map((para, i) =>
-          <p key={i}>{para}</p>
-        )}
-      </div>
-    </section>
+export default class NotePageMain extends React.Component {
+  static defaultProps = {
+    match: {
+      params: {}
+    }
+  }
+
+  static contextType = NoteContext
+
+  render(){
+    const { notes=[] } = this.context
+    const { noteId } = this.props.match.params
+    const note = findNote(notes, noteId) || { content: '' }
+    return (
+      <section className='NotePageMain'>
+        <Note
+          id={note.id}
+          name={note.name}
+
+        />
+        <div className='NotePageMainContent'>
+          {note.content.split(/\n \r|\n/).map((para, i) =>
+            <p key={i}>{para}</p>
+          )}
+        </div>
+      </section>
   )
 }
-
-NotePageMain.defaultProps = {
-  note: {
-    content: '',
-  }
 }
