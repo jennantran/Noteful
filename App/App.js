@@ -5,12 +5,14 @@ import NoteListNav from '../NoteListNav/NoteListNav'
 import NotePageNav from '../NotePageNav/NotePageNav'
 import NoteListMain from '../NoteListMain/NoteListMain';
 import noteContext from '../noteContext';
+import AddFolder from '../AddFolder/AddFolder';
 
 
 class App extends Component{
   state =  {
     notes: [],
-    folders: []
+    folders: [],
+    addFolder: this.addFolder
   };
 
   componentDidMount() {
@@ -47,58 +49,36 @@ class App extends Component{
     });
   }
 
-  renderNavRoutes() {
-    return (
-        <>
-            {['/', '/folder/:folderId'].map(path => (
-                <Route
-                    exact
-                    key={path}
-                    path={path}
-                    component={NoteListNav}
-                      />
-              ))}
-               <Route 
-                    path="/note/:noteId" 
-                    component={NotePageNav} 
-                    />
-        </>
-    );
-}
- renderMainRoutes() {
-  return (
-      <React.Fragment>
-           {['/', '/folder/:folderId'].map(path => (
-              <Route
-                  exact 
-                  key={path}
-                  path={path}
-                  component={NoteListMain}
-               />       
-         ))}
-           <Route
-              path="/note/:noteId"
-          /> 
-      </React.Fragment>
-    );
+  addFolder = name => {
+    this.setState({
+      folders: [...this.state.folders,name]
+    })
   }
-
 
     render(){
       const value ={
         notes: this.state.notes,
         folders: this.state.folders,
-        deleteNote: this.handleDeleteNote
+        deleteNote: this.handleDeleteNote,
+        addFolder: this.addFolder
       }
       
       return (
         <noteContext.Provider value={value}>
             <div className="App">
-              <nav className="navigation">{this.renderNavRoutes()}</nav>
+              <nav className="navigation">
+                <Route exact path="/" component={NoteListNav}/>
+                <Route path="/folder/:folder_id" component={NoteListNav}/>
+                <Route path="/notes/:note_id" component={NotePageNav}/>
+                <Route path="/AddFolders" component={AddFolder}/>
+              </nav>
               <header className="appHeader">
                   <h1>Noteful</h1>
               </header>
-              <main className="appMain">{this.renderMainRoutes()}</main> 
+              <main className="appMain">
+                <Route exact path="/" component={NoteListMain}/>
+       
+                </main> 
             </div>
           </noteContext.Provider>
       
