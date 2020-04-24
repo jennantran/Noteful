@@ -7,7 +7,6 @@ import NoteListMain from '../NoteListMain/NoteListMain';
 import noteContext from '../noteContext';
 import AddFolder from '../AddFolder/AddFolder';
 
-
 class App extends Component{
   state =  {
     notes: [],
@@ -38,12 +37,13 @@ class App extends Component{
       })
       .then(([notes,folders]) => {
         this.setState({notes,folders});
+        console.log(this.state);
       })
       .catch(error => {
         console.error({error})
       });
   }
-  deleteNote = noteId => {
+  handleDeleteNote = noteId => {
     this.setState({
       notes: this.state.notes.filter(note => note.id !==noteId)
     });
@@ -70,14 +70,13 @@ class App extends Component{
                 <Route exact path="/" component={NoteListNav}/>
                 <Route path="/folder/:folder_id" component={NoteListNav}/>
                 <Route path="/notes/:note_id" component={NotePageNav}/>
-                <Route path="/AddFolders" component={AddFolder}/>
+                <Route path="/AddFolder" component={AddFolder}/>
               </nav>
               <header className="appHeader">
                   <h1>Noteful</h1>
               </header>
               <main className="appMain">
                 <Route exact path="/" component={NoteListMain}/>
-       
                 </main> 
             </div>
           </noteContext.Provider>
