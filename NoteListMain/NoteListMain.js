@@ -2,6 +2,8 @@ import React from 'react';
 import Note from '../Note/Note';
 import NoteContext from '../noteContext'
 import {getNotesForFolder} from '../NoteFunctions'
+import Button from '../Button';
+import './NoteListMain.css';
 
 export default class NoteListMain extends React.Component {
     static defaultProps = {
@@ -13,12 +15,11 @@ export default class NoteListMain extends React.Component {
     static contextType = NoteContext;
 
     render(){
-        const { folderId } = this.props.match.params
-        const { notes =[] } = this.context
-        console.log("Notes" + notes);
-        const notesForFolder = getNotesForFolder(notes,folderId)
+        const { folder_id } = this.props.match.params;
+        const { notes =[] } = this.context;
+        const notesForFolder = getNotesForFolder(notes,folder_id);
         return (
-            <section className="NotePageMain">
+            <section className="NoteListMain">
                 <ul>
                     {notesForFolder.map(note => 
                         <li key={note.id}>
@@ -29,6 +30,13 @@ export default class NoteListMain extends React.Component {
                         </li>
                         )}
                 </ul>
+                <div className="NoteListNavAddButton">
+                        <Button
+                            className="addNoteButton"
+                            to="/AddNote"
+                            type="button"    
+                        >Add Notes</Button>
+                    </div>
             </section>
 
     )

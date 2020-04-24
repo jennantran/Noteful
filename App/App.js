@@ -37,7 +37,6 @@ class App extends Component{
       })
       .then(([notes,folders]) => {
         this.setState({notes,folders});
-        console.log(this.state);
       })
       .catch(error => {
         console.error({error})
@@ -77,6 +76,7 @@ class App extends Component{
               </header>
               <main className="appMain">
                 <Route exact path="/" component={NoteListMain}/>
+                <Route path="/folder/:folder_id" component={NoteListMain}/>
                 </main> 
             </div>
           </noteContext.Provider>

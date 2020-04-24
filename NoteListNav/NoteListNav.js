@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import './NoteListNav.css';
 import { countNotesForFolder } from '../NoteFunctions';
 import NoteContext from '../noteContext';
@@ -29,10 +29,11 @@ export default class NoteListNav extends React.Component {
                 </ul>
                     <div className="NoteListNavAddButton">
                         <Button
+                            tag={Link}
                             className="addFolderButton"
                             to="/AddFolder"
                             type="button"    
-                        >Add Note</Button>
+                        >Add Folder</Button>
                     </div>
 
 
