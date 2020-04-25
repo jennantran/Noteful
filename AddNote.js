@@ -10,7 +10,7 @@ export default class AddNote extends Component {
         this.state = {
             name: "",
             content:"",
-            folderId: ""
+            folderId: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
         };      
     }
     updateName(name){
@@ -27,13 +27,13 @@ export default class AddNote extends Component {
         });
     }
 
-    updateFolder = (folderId) => {
+    updateFolder = (folderId, value) => {
         console.log(folderId);
         this.setState({
-            folderId
+            folderId, 
+            value
         });
     }
-
      handleSubmit(event){
          console.log("handlesubmit");
          event.preventDefault();
@@ -61,15 +61,16 @@ export default class AddNote extends Component {
             return res.json()
         })
         .then((data) => {
+            this.context.addNote(data);
             this.props.history.push("/");
         })
         .catch(error => {
             console.error(error);
-        });   
+        });  
      }
 
     render(){
-        // const {name, content, folder_id} = this.context;
+        // const {name, content, folderId} = this.context;
         console.log(this.context);
         const options = this.context.folders.map((folder) => {
             return(

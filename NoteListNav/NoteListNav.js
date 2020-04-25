@@ -36,8 +36,6 @@ export default class NoteListNav extends React.Component {
                             type="button"    
                         >Add Folder</Button>
                     </div>
-
-
             </div>
         );
     }
