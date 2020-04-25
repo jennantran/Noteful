@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import NoteContext from '../noteContext'
 import './AddFolder.css'
-
+import ValidationError from '../ValidationError';
 
 export default class AddFolder extends Component {
 
@@ -9,14 +9,20 @@ export default class AddFolder extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name: ""
+            name: {
+                value: "",
+                touched: false
+            }
         }
     }
 
     updateName(name){
         console.log({name});
         this.setState({
-            name: name
+            name: {
+                value: name,
+                touched: true
+            }
         })
     }
 
@@ -49,20 +55,32 @@ export default class AddFolder extends Component {
         });   
     } 
 
+    validateName(){
+        const name = this.state.name.value.trim();
+        if(name.length === 0){
+            return "name is required";
+        }else if (name.length < 3 || name.length >20){
+            return "Name must be between 3 and 20 characters";
+        }
+    }
+
     render(){
+        const nameError = this.validateName();
         return(  
                 <form className="AddFolderForm"
                     onSubmit= {e => this.handleSubmit(e)} >
-                    <label>Name</label>
-                    <input
-                        type="text"   
-                        name="name"   
-                        id="name"
-                        placeholder="name"
-                        onChange={e => this.updateName(e.target.value)}
-                    />
+                    <div className="nameInput">
+                        <label>Name</label>
+                        <input
+                            type="text"   
+                            name="name"   
+                            id="name"
+                            placeholder="name"
+                            onChange={e => this.updateName(e.target.value)}
+                        />
+                        {this.state.name.touched && <ValidationError message={nameError} />}
+                     </div>
                     <input type="submit"
-
                     ></input>
                 </form>
         );

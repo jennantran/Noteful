@@ -8,6 +8,7 @@ import noteContext from '../noteContext';
 import AddFolder from '../AddFolder/AddFolder';
 import AddNote from '../AddNote';
 import NotePageMain from '../NotePageMain/NotePageMain';
+import NoteError from '../NoteError';
 
 class App extends Component {
   state = {
@@ -73,25 +74,27 @@ class App extends Component {
     }
 
     return (
-      <noteContext.Provider value={value}>
-        <div className="App">
-          <nav className="navigation">
-            <Route exact path="/" component={NoteListNav} />
-            <Route path="/folder/:folder_id" component={NoteListNav} />
-            <Route path="/note/:note_id" component={NotePageNav} />
-            <Route path="/AddFolder" component={AddFolder} />
-          </nav>
-          <header className="appHeader">
-            <h1>Noteful</h1>
-          </header>
-          <main className="appMain">
-            <Route exact path="/" component={NoteListMain} />
-            <Route path="/folder/:folder_id" component={NoteListMain} />
-            <Route path="/AddNote" component={AddNote} />
-            <Route path="/note/:note_id" component={NotePageMain} />
-          </main>
-        </div>
-      </noteContext.Provider>
+      <NoteError>
+        <noteContext.Provider value={value}>
+          <div className="App">
+            <nav className="navigation">
+              <Route exact path="/" component={NoteListNav} />
+              <Route path="/folder/:folder_id" component={NoteListNav} />
+              <Route path="/note/:note_id" component={NotePageNav} />
+              <Route path="/AddFolder" component={AddFolder} />
+            </nav>
+            <header className="appHeader">
+              <h1>Noteful</h1>
+            </header>
+            <main className="appMain">
+              <Route exact path="/" component={NoteListMain} />
+              <Route path="/folder/:folder_id" component={NoteListMain} />
+              <Route path="/AddNote" component={AddNote} />
+              <Route path="/note/:note_id" component={NotePageMain} />
+            </main>
+          </div>
+        </noteContext.Provider>
+      </NoteError>
 
     );
   }
