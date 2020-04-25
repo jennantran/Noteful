@@ -5,6 +5,7 @@ import { countNotesForFolder } from '../NoteFunctions';
 import NoteContext from '../noteContext';
 import Button from '../Button';
 
+
 export default class NoteListNav extends React.Component {
     static contextType = NoteContext;
 

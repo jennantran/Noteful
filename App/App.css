@@ -3,16 +3,28 @@
   grid-template-areas: "sidebar header" "sidebar main";
 }
 
-
 .appHeader {
   grid-area: header;
   padding: 15px;
-  border: 1px black solid;
+  color: #bdbdbd;
+  background-color: #0b1f3a;
 
+}
+
+.appHeader a {
+  color: #bdbdbd;
 }
 
 .navigation {
   grid-area: sidebar;
   height: 100vh;
-  border: 1px black solid;
+  background-color: #0b1b32;
+  color: #fff;
+}
+
+.appMain {
+  background-color: #102541;
+  grid-area: main;
+  height: calc(100vh - 120px);
+  overflow: auto;
 }

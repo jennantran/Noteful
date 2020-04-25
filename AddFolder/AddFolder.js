@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import NoteContext from '../noteContext'
+import './AddFolder.css'
 
 
 export default class AddFolder extends Component {
@@ -8,23 +9,21 @@ export default class AddFolder extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name: {
-                value: ""
-            }
+            name: ""
         }
     }
 
     updateName(name){
         console.log({name});
         this.setState({
-            name: {value: name}
+            name: name
         })
     }
 
     handleSubmit(event){
         event.preventDefault();
         const newFolder = {
-            name: this.state.name.value
+            name: this.state.name
         };
         const baseUrl = 'http://localhost:9090';
         const foldersEndPoint = '/folders';

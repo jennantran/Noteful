@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import NoteContext from './noteContext'
-
+import './AddNote.css'
 
 export default class AddNote extends Component {
     static contextType = NoteContext;
@@ -8,32 +8,30 @@ export default class AddNote extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name: {
-                value: "",
-                content:"",
-                // folder_id
-            }
-        }
+            name: "",
+            content:"",
+            folderId: ""
+        };      
     }
     updateName(name){
         console.log({name});
         this.setState({
-            name: {value: name}
-        })
+            name
+        });
     }
 
     updateContent(content){
         console.log({content});
         this.setState({
-            content: {value: content}
-        })
+            content
+        });
     }
 
-    updateFolder = (event) => {
-        console.log("update folder");
+    updateFolder = (folderId) => {
+        console.log(folderId);
         this.setState({
-            folder_id: event.target.value
-        })
+            folderId
+        });
     }
 
      handleSubmit(event){
@@ -41,11 +39,11 @@ export default class AddNote extends Component {
          event.preventDefault();
  
          const newNote = {
-            name: this.state.name.value,
-            content: this.state.name.content,
-            // folder_id,
+            name: this.state.name,
+            content: this.state.content,
+            folderId: this.state.folderId
        };
-
+        console.log(newNote);
         const baseUrl = 'http://localhost:9090';
         const NoteEndPoint = '/notes';
 
@@ -64,12 +62,15 @@ export default class AddNote extends Component {
         })
         .then((data) => {
             this.props.history.push("/");
-        });
+        })
+        .catch(error => {
+            console.error(error);
+        });   
      }
 
     render(){
-        // const {name, content, folder_id} = this.state;
-
+        // const {name, content, folder_id} = this.context;
+        console.log(this.context);
         const options = this.context.folders.map((folder) => {
             return(
                 <option key={folder.id} value={folder.id}>
@@ -85,6 +86,7 @@ export default class AddNote extends Component {
                         type="text"   
                         id="name"
                         placeholder="name"
+                        value={this.state.name}
                         onChange={e => this.updateName(e.target.value)}
                     />
                     <label>Content</label>
@@ -92,6 +94,7 @@ export default class AddNote extends Component {
                         type="text"   
                         name="content"   
                         id="content"
+                        value={this.state.content}
                         onChange={e => this.updateContent(e.target.value)}
                     /> 
                     <label>
@@ -99,11 +102,12 @@ export default class AddNote extends Component {
                     </label>
                     <select 
                         className="folderId"
+                        value={this.state.folderId}
                         onChange={e => this.updateFolder(e.target.value)}>
                         {options}
                     </select>
                     <input type="submit"
-            
+                        className="submit"
                     ></input>
                 </form>
         );

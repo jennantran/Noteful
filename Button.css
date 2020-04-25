@@ -1,4 +1,4 @@
-.addFolderButton,.addNoteButton {
+.addNoteButton {
     background-color: #cacaca;
     border-radius: 30px;
     border: 0;
@@ -15,6 +15,17 @@
     margin-top: 10px;
     margin-left: 10px;
 
+  }
+  .addFolderButton{
+    background-color: #cacaca;
+    border-radius: 30px;
+    border: 0;
+    color: black;
+    display: block;
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+    text-decoration: none;
   }
   
   a.addFolderButton, a.addNoteButton {

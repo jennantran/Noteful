@@ -7,6 +7,7 @@ import NoteListMain from '../NoteListMain/NoteListMain';
 import noteContext from '../noteContext';
 import AddFolder from '../AddFolder/AddFolder';
 import AddNote from '../AddNote';
+import NotePageMain from '../NotePageMain/NotePageMain';
 
 class App extends Component {
   state = {
@@ -77,7 +78,7 @@ class App extends Component {
           <nav className="navigation">
             <Route exact path="/" component={NoteListNav} />
             <Route path="/folder/:folder_id" component={NoteListNav} />
-            <Route path="/notes/:note_id" component={NotePageNav} />
+            <Route path="/note/:note_id" component={NotePageNav} />
             <Route path="/AddFolder" component={AddFolder} />
           </nav>
           <header className="appHeader">
@@ -87,6 +88,7 @@ class App extends Component {
             <Route exact path="/" component={NoteListMain} />
             <Route path="/folder/:folder_id" component={NoteListMain} />
             <Route path="/AddNote" component={AddNote} />
+            <Route path="/note/:note_id" component={NotePageMain} />
           </main>
         </div>
       </noteContext.Provider>

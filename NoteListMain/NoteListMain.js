@@ -31,7 +31,7 @@ export default class NoteListMain extends React.Component {
                         </li>
                         )}
                 </ul>
-                <div className="NoteListNavAddButton">
+                <div className="NoteListMainAddButton">
                         <Button
                             className="addNoteButton"
                             to="/AddNote"
