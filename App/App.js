@@ -57,9 +57,9 @@ class App extends Component {
     })
   }
 
-  addNote = (name, content, folder_id) => {
+  addNote = note => {
     this.setState({
-      notes: [...this.state.notes, name, content, folder_id]
+      notes: [...this.state.notes, note]
     });
   }
 
