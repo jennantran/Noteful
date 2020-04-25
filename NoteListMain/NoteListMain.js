@@ -4,6 +4,7 @@ import NoteContext from '../noteContext'
 import {getNotesForFolder} from '../NoteFunctions'
 import Button from '../Button';
 import './NoteListMain.css';
+import { Link } from 'react-router-dom'
 
 export default class NoteListMain extends React.Component {
     static defaultProps = {
@@ -34,7 +35,8 @@ export default class NoteListMain extends React.Component {
                         <Button
                             className="addNoteButton"
                             to="/AddNote"
-                            type="button"    
+                            type="button"  
+                            tag={Link}  
                         >Add Notes</Button>
                     </div>
             </section>
