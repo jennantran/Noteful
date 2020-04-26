@@ -35,7 +35,7 @@
     padding: 8px;
     text-align: center;
     text-decoration: none;
-    margin-top: 30px;
+
   }
 .AddNoteForm[type="submit"]:hover {
     background-color: #29862e;
